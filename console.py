@@ -9,6 +9,7 @@ import repositories.item_repository as item_repository
 
 user_repository.delete_all()
 merchant_repository.delete_all()
+item_repository.delete_all()
 
 user1 = User("Todd",10,20)
 user_repository.save(user1)
@@ -46,6 +47,9 @@ merchant1 = Merchant("Amazon",10)
 merchant_repository.save(merchant1)
 print (merchant1.id, merchant1.name, merchant1.money_received)
 
+merchant2 = Merchant("Alibaba",20)
+merchant_repository.save(merchant2)
+
 merchant1 = Merchant("Amazon",1000,merchant1.id)
 merchant_repository.update(merchant1)
 
@@ -57,6 +61,26 @@ for merchant in merchants:
 print(merchant1.id)
 item1= Item("ball","toy",10,merchant1)
 item_repository.save(item1)
+
+item2= Item("yoyo","toy",5,merchant1)
+item_repository.save(item2)
+
+items = item_repository.select_all()
+for item in items:
+    print(item.name, item.id, item.merchant.name, item.tag, item.cost)
+
+specific_item = item_repository.select(item2.id)
+print(specific_item.name, specific_item.id, specific_item.merchant.name, specific_item.cost)
+
+# specific item working
+
+item2= Item("yoyo","weapon",10,merchant2,item2.id)
+item_repository.update(item2)
+
+items = item_repository.select_all()
+for item in items:
+    print(item.name, item.id, item.merchant.name, item.tag, item.cost)
+    print(item.merchant.id)
 
 
 

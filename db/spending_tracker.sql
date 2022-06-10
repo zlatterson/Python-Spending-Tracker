@@ -39,6 +39,3 @@ CREATE TABLE transactions(
     item_id INT REFERENCES items(id) ON DELETE CASCADE
     -- time DATETIME
 );
-
-
-INSERT INTO items (name,tag,cost) VALUES ('pizza','food',100);
