@@ -2,10 +2,12 @@ import pdb
 from models.item import Item
 from models.merchant import Merchant
 from models.user import User
+from models.transaction import Transaction
 
 import repositories.user_repository as user_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.item_repository as item_repository
+import repositories.transaction_repository as transaction_repository
 
 user_repository.delete_all()
 merchant_repository.delete_all()
@@ -80,7 +82,20 @@ item_repository.update(item2)
 items = item_repository.select_all()
 for item in items:
     print(item.name, item.id, item.merchant.name, item.tag, item.cost)
-    print(item.merchant.id)
+# update working
+# __________transactions_____
+
+users = user_repository.select_all()
+for user in users:
+    print("id is")
+    print(user.id, user.name)
+
+
+print(merchant2,item2,user2,item2.cost)
+transaction1 = Transaction(merchant2,item2,user2,item2.cost)
+transaction_repository.save(transaction1)
+
+
 
 
 

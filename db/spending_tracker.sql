@@ -10,13 +10,6 @@ CREATE TABLE users(
     daily_allowance INT
 );
 
-
--- CREATE TABLE inventorys(
---     id SERIAL PRIMARY KEY,
---     merchant_id INT REFERENCES merchants(id),
---     item_id INT REFERENCES items(id)
--- );
-
 CREATE TABLE merchants(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
@@ -32,10 +25,18 @@ CREATE TABLE items (
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
 );
 
+-- CREATE TABLE tags (
+--     id SERIAL PRIMARY KEY
+--     tag_name VARCHAR(255)
+-- );
+
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
-    merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
-    item_id INT REFERENCES items(id) ON DELETE CASCADE
+    merchant_id SERIAL REFERENCES merchants(id) ON DELETE CASCADE,
+    item_id SERIAL REFERENCES items(id) ON DELETE CASCADE,
+    user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
+    cost INT
     -- time DATETIME
 );
+
+
