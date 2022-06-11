@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<h1>Create user</h1>
+
+<p>{% for user in users %}</p>
+<ul>
+    <li>{{user.id}} : {{user.name}}, daily allowance: {{user.daily_allowance}}, money: {{user.money}}</li>
+</ul>
+<p>{% endfor %}</p>
+
+<form action="/users" method="post">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Full Name" required autofocus>
+    </div>
+  
+    <div>
+      <label for="Account Balance">Account Balance:</label>
+      <input type="number" id="balance" name="balance" placeholder="£" required>
+    </div>
+
+    <div>
+        <label for="Daily Budget">Daily Budget:</label>
+        <input type="number" id="budget" name="budget" placeholder="£" required>
+      </div>
+  
+    <!-- <div>
+      <label for="user">User:</label>
+      <select id="user" name="user_id">
+        {% for user in all_users %}
+          <option value="{{ user.id }}">{{ user.first_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+   -->
+    <button type="submit">Create Account</button>
+  
+</form>
+  
+
+{% endblock %}

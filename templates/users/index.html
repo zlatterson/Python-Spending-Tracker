@@ -1,0 +1,13 @@
+{% extends 'users/base.html'%}
+
+{% block content %}
+<h1>Spending Tracker</h1>
+
+<p>{% for user in users %}</p>
+<ul>
+    <li>
+        {{user.id}} : {{user.name}}, daily allowance: {{user.daily_allowance}}, money: {{user.money}} <a href="/users/{{user.id}}">Show</a>
+    </li>
+</ul>
+<p>{% endfor %}</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'merchants/base.html'%}
+
+{% block content %}
+<h1>Spending Tracker</h1>
+
+<p>{% for merchant in merchants %}</p>
+<ul>
+    <li>
+        {{merchant.id}} : {{merchant.name}}, money received: {{merchant.money_received}}, <a href="/merchants/{{merchant.id}}">Show</a>
+    </li>
+</ul>
+<p>{% endfor %}</p>
+{% endblock %}

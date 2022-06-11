@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<h1>Spending Tracker</h1>
+
+<p>{{user.id}} : {{user.name}}, daily allowance: {{user.daily_allowance}}, money: {{user.money}}</p>
+
+<form action="/users/{{user.id}}/edit">
+    <button type="submit">Edit Account</button>
+</form>
+
+<form action="/users/{{user.id}}/delete" method="post">
+    <button type="submit">Delete Account</button>
+</form>
+
+{% endblock %}

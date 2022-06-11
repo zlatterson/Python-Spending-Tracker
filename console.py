@@ -41,7 +41,7 @@ for user in users:
     print (user.id, user.name, user.money)
 # pass: user update
 
-user_repository.delete(user1.id)
+# user_repository.delete(user1.id)
 
 users = user_repository.select_all()
 for user in users:
@@ -190,7 +190,7 @@ for transaction in transaction_list:
     print(transaction.merchant.name, transaction.item.name, transaction.item.tag, transaction.user.name, transaction.cost, transaction.time)
 # # delete single transaction: working
 
-
+ 
 
 
 pdb.set_trace()

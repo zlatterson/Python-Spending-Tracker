@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<h1>Create user</h1>
+
+<form action="/users/{{user.id}}" method="post">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="{{user.name}}" required autofocus>
+    </div>
+  
+    <div>
+      <label for="Account Balance">Account Balance:</label>
+      <input type="number" id="balance" name="balance" placeholder="{{user.money}}" required>
+    </div>
+
+    <div>
+        <label for="Daily Budget">Daily Budget:</label>
+        <input type="number" id="budget" name="budget" placeholder="{{user.daily_allowance}}" required>
+      </div>
+  
+    <!-- <div>
+      <label for="user">User:</label>
+      <select id="user" name="user_id">
+        {% for user in all_users %}
+          <option value="{{ user.id }}">{{ user.first_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+   -->
+    <button type="submit">Update Account</button>
+  
+</form>
+  
+
+{% endblock %}
