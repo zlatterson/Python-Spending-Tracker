@@ -1,4 +1,5 @@
 import pdb
+from datetime import datetime
 from models.item import Item
 from models.merchant import Merchant
 from models.user import User
@@ -137,11 +138,11 @@ for user in users:
     print("id is")
     print(user.id, user.name)
 
-
-transaction1 = Transaction(merchant1,user2,item2,item2.cost)
+dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+transaction1 = Transaction(merchant1,user2,item2,item2.cost,dt_string)
 transaction_repository.save(transaction1)
 
-transaction2 = Transaction(merchant1,user2,item1,item1.cost)
+transaction2 = Transaction(merchant1,user2,item1,item1.cost, dt_string)
 transaction_repository.save(transaction2)
 
 # # -- save transactions: working
@@ -154,7 +155,7 @@ for transaction in transaction_list:
 
 print(transaction1.id)
 single_transaction = transaction_repository.select(transaction2.id)
-print(single_transaction.id, single_transaction.cost, single_transaction.merchant.name, single_transaction.user.name)
+print(single_transaction.id, single_transaction.cost, single_transaction.merchant.name, single_transaction.user.name, single_transaction.time)
 # # -- select single transaction: working
 transaction_list = transaction_repository.select_all()
 print("before testing update:")
@@ -174,19 +175,19 @@ titem= Item("Big Mac",10,ttag,tmerchant)
 item_repository.save(titem)
 
 
-transaction1 = Transaction(tmerchant,tuser,titem,titem.cost,transaction1.id)
+transaction1 = Transaction(tmerchant,tuser,titem,titem.cost,dt_string,transaction1.id)
 transaction_repository.update(transaction1)
 
 transaction_list = transaction_repository.select_all()
 print("testing update:")
 for transaction in transaction_list:
-    print(transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.user.name, transaction.cost)
+    print(transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.user.name, transaction.cost, transaction.time)
 # # -- transaction update: working
 
 transaction_repository.delete(transaction2.id)
 transaction_list = transaction_repository.select_all()
 for transaction in transaction_list:
-    print(transaction.merchant.name, transaction.item.name, transaction.item.tag, transaction.user.name, transaction.cost)
+    print(transaction.merchant.name, transaction.item.name, transaction.item.tag, transaction.user.name, transaction.cost, transaction.time)
 # # delete single transaction: working
 
 

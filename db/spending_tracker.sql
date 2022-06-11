@@ -37,9 +37,9 @@ CREATE TABLE transactions(
     merchant_id SERIAL REFERENCES merchants(id) ON DELETE CASCADE,
     user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
     item_id SERIAL REFERENCES items(id) ON DELETE CASCADE,
-    cost INT
+    cost INT,
     -- rating INT
-    -- time DATE
+    time VARCHAR(255)
 );
 
 
