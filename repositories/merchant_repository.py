@@ -23,7 +23,8 @@ def select(id):
     sql = "SELECT * FROM merchants WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
-    merchant = Merchant(result["name"],result["money_received"],result["id"])
+    if result is not None:
+        merchant = Merchant(result["name"],result["money_received"],result["id"])
     return merchant
 
 

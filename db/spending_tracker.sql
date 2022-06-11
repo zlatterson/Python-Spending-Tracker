@@ -2,6 +2,7 @@ DROP TABLE transactions;
 DROP TABLE users;
 DROP TABLE items;
 DROP TABLE merchants;
+DROP TABLE tags;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -15,20 +16,21 @@ CREATE TABLE merchants(
     name VARCHAR(255),
     money_received INT
 );
+-- ----------v
+CREATE TABLE tags (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    times_used INT
+);
 
 CREATE TABLE items (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    tag VARCHAR(255),
-    -- tag will allow us to search other tags
     cost INT,
+    tag_id INT REFERENCES tags(id) ON DELETE CASCADE,
     merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
 );
-
--- CREATE TABLE tags (
---     id SERIAL PRIMARY KEY
---     tag_name VARCHAR(255)
--- );
+-- --------^
 
 CREATE TABLE transactions(
     id SERIAL PRIMARY KEY,
