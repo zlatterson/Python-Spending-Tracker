@@ -36,7 +36,8 @@ CREATE TABLE transactions(
     item_id SERIAL REFERENCES items(id) ON DELETE CASCADE,
     user_id SERIAL REFERENCES users(id) ON DELETE CASCADE,
     cost INT
-    -- time DATETIME
+    -- rating INT
+    -- time DATE
 );
 
 

@@ -84,7 +84,7 @@ items = item_repository.select_all()
 for item in items:
     print(item.name, item.id, item.merchant.name, item.tag, item.cost)
 # update working
-# __________transactions_____
+# ____________________TRANSACTIONS_________________
 
 users = user_repository.select_all()
 for user in users:
@@ -107,15 +107,27 @@ for transaction in transaction_list:
 
 # -- select all transactions: working
 
-
+print(transaction1.id)
 single_transaction = transaction_repository.select(transaction1.id)
 print(single_transaction.id, single_transaction.cost, single_transaction.merchant.name, single_transaction.user.name)
 # -- select single transaction: working
+
+transaction1 = Transaction(merchant1.id,item1.id,user2.id,item1.cost,transaction1.id)
+transaction_repository.update(transaction1)
+
+transaction_list = transaction_repository.select_all()
+print("testing update:")
+for transaction in transaction_list:
+    print(transaction.merchant.name, transaction.item.name, transaction.user.name, transaction.cost)
+# -- transaction update: working
 
 transaction_repository.delete(transaction1.id)
 transaction_list = transaction_repository.select_all()
 for transaction in transaction_list:
     print(transaction.merchant.name, transaction.item.name, transaction.user.name, transaction.cost)
+# delete single transaction: working
+
+
 
 
 pdb.set_trace()

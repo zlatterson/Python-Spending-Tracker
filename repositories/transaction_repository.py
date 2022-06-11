@@ -37,6 +37,10 @@ def select(id):
     transaction = Transaction(merchant,item,user,result["cost"])
     return transaction
 
+def update(transaction):
+    sql = "UPDATE transactions SET (merchant_id, item_id, user_id, cost) = (%s,%s,%s,%s) WHERE id = %s"
+    values = [transaction.merchant,transaction.item,transaction.user,transaction.cost,transaction.id]
+    run_sql(sql, values)
 
 def delete_all():
     sql = "DELETE FROM transactions"
