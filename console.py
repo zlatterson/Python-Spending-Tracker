@@ -132,45 +132,61 @@ for item in items:
 # update working
 # # ____________________TRANSACTIONS_________________
 
-# users = user_repository.select_all()
-# for user in users:
-#     print("id is")
-#     print(user.id, user.name)
+users = user_repository.select_all()
+for user in users:
+    print("id is")
+    print(user.id, user.name)
 
 
-# print(merchant2,item2,user2,item2.cost)
-# transaction1 = Transaction(merchant1.id,item2.id,user2.id,item2.cost)
-# transaction_repository.save(transaction1)
+transaction1 = Transaction(merchant1,user2,item2,item2.cost)
+transaction_repository.save(transaction1)
 
-# transaction2 = Transaction(merchant2.id,item1.id,user2.id,item1.cost)
-# transaction_repository.save(transaction2)
+transaction2 = Transaction(merchant1,user2,item1,item1.cost)
+transaction_repository.save(transaction2)
 
 # # -- save transactions: working
 
-# transaction_list = transaction_repository.select_all()
-# for transaction in transaction_list:
-#     print(transaction.merchant.name, transaction.item.name, transaction.user.name, transaction.cost)
+transaction_list = transaction_repository.select_all()
+for transaction in transaction_list:
+    print(transaction.merchant.name, transaction.item.name, transaction.user.name, transaction.cost)
 
 # # -- select all transactions: working
 
-# print(transaction1.id)
-# single_transaction = transaction_repository.select(transaction1.id)
-# print(single_transaction.id, single_transaction.cost, single_transaction.merchant.name, single_transaction.user.name)
+print(transaction1.id)
+single_transaction = transaction_repository.select(transaction2.id)
+print(single_transaction.id, single_transaction.cost, single_transaction.merchant.name, single_transaction.user.name)
 # # -- select single transaction: working
+transaction_list = transaction_repository.select_all()
+print("before testing update:")
+for transaction in transaction_list:
+    print(transaction.merchant.name, transaction.item.name, transaction.user.name, transaction.cost)
 
-# transaction1 = Transaction(merchant1.id,item1.id,user2.id,item1.cost,transaction1.id)
-# transaction_repository.update(transaction1)
+tuser = User("Brian",1000,60)
+user_repository.save(tuser)
 
-# transaction_list = transaction_repository.select_all()
-# print("testing update:")
-# for transaction in transaction_list:
-#     print(transaction.merchant.name, transaction.item.name, transaction.user.name, transaction.cost)
+tmerchant = Merchant("McDonalds",10)
+merchant_repository.save(tmerchant)
+
+ttag = Tag("burger",1)
+tag_repository.save(ttag)
+
+titem= Item("Big Mac",10,ttag,tmerchant)
+item_repository.save(titem)
+
+
+transaction1 = Transaction(tmerchant,tuser,titem,titem.cost,transaction1.id)
+transaction_repository.update(transaction1)
+
+transaction_list = transaction_repository.select_all()
+print("testing update:")
+for transaction in transaction_list:
+    print(transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.user.name, transaction.cost)
 # # -- transaction update: working
 
-# transaction_repository.delete(transaction1.id)
-# transaction_list = transaction_repository.select_all()
-# for transaction in transaction_list:
-#     print(transaction.merchant.name, transaction.item.name, transaction.item.tag, transaction.user.name, transaction.cost)
+transaction_repository.delete(transaction2.id)
+transaction_list = transaction_repository.select_all()
+for transaction in transaction_list:
+    print(transaction.merchant.name, transaction.item.name, transaction.item.tag, transaction.user.name, transaction.cost)
 # # delete single transaction: working
 
 
