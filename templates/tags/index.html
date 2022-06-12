@@ -1,0 +1,13 @@
+{% extends 'tags/base.html'%}
+
+{% block content %}
+<h1>Spending Tracker</h1>
+
+<p>{% for tag in tags %}</p>
+<ul>
+    <li>
+        {{tag.id}} : {{tag.name}}, times used: {{tag.times_used}}, <a href="/tags/{{tag.id}}">Show</a>
+    </li>
+</ul>
+<p>{% endfor %}</p>
+{% endblock %}

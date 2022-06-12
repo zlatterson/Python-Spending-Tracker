@@ -1,0 +1,25 @@
+{% extends 'merchants/base.html'%}
+
+{% block content %}
+<h1>Create Merchant</h1>
+
+<p>{% for merchant in merchants %}</p>
+<ul>
+    <li>
+        {{merchant.id}} : {{merchant.name}}, money received: {{merchant.money_received}}, <a href="/merchants/{{merchant.id}}">Show</a>
+    </li>
+</ul>
+<p>{% endfor %}</p>
+
+<form action="/merchants" method="post">
+    <div>
+      <label for="name">Merchant Name:</label>
+      <input type="text" id="merchant_name" name="merchant_name" placeholder="Merchant Name" required autofocus>
+    </div>
+  
+    <button type="submit">Create Merchant</button>
+  
+</form>
+  
+
+{% endblock %}

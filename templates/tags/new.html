@@ -1,0 +1,25 @@
+{% extends 'tags/base.html'%}
+
+{% block content %}
+<h1>Create Tags</h1>
+
+<p>{% for tag in tags %}</p>
+<ul>
+    <li>
+        {{tag.id}} : {{tag.name}}, times used: {{tag.times_used}}
+    </li>
+</ul>
+<p>{% endfor %}</p>
+
+<form action="/tags" method="post">
+    <div>
+      <label for="name">Tag:</label>
+      <input type="text" id="tag_name" name="tag_name" placeholder="Food, toy, etc..." required autofocus>
+    </div>
+  
+    <button type="submit">Create Tag</button>
+  
+</form>
+  
+
+{% endblock %}

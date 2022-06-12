@@ -17,62 +17,50 @@ def app():
     return render_template("/index.html", users=users)
 
 
-# # NEW
-# # GET '/tasks/new'
-@app_blueprint.route("/new", methods=["GET"])
-def new_spending():
+# SHOW
+@app_blueprint.route("/<id>")
+def show_users(id):
+    user = user_repository.select(id)
+    print(user)
+    return render_template("/show.html", user=user)
+
+
+
+# NEW
+@app_blueprint.route("/new")
+def new_user():
     users = user_repository.select_all()
-    return render_template("/new.html", all_users = users)
+    return render_template("/new.html", users=users)
 
-# # CREATE
-# # POST '/tasks'
-# @tasks_blueprint.route("/tasks", methods=["POST"])
-# def create_task():
-#     description = request.form["description"]
-#     user_id = request.form["user_id"]
-#     duration = request.form["duration"]
-#     completed = request.form["completed"]
-#     user = user_repository.select(user_id)
-#     task = Task(description,user,duration,completed)
-#     task_repository.save(task)
-#     return redirect("/tasks")
+# CREATE
+@app_blueprint.route("/",methods=["POST"])
+def create_user():
+    name = request.form["name"]
+    balance = request.form["balance"]
+    budget = request.form["budget"]
+    account = User(name,balance,budget)
+    user_repository.save(account)
+    return redirect("/users")
 
 
-# # SHOW
-# # GET '/tasks/<id>'
-# @tasks_blueprint.route("/tasks/<id>")
-# def show_task(id):
-#     found_task = task_repository.select(id)
-#     return render_template("/tasks/show.html", task = found_task)
-
-# # ___________________v
-# # EDIT
-# # GET '/tasks/<id>/edit'
-# @tasks_blueprint.route("/tasks/<id>/edit")
-# def edit_task(id):
-#     task = task_repository.select(id)
-#     users = user_repository.select_all()
-#     return render_template("/tasks/edit.html", task=task, all_users=users)
+# EDIT
+# @app_blueprint.route("/<id>/edit")
+# def edit_user(id):
+#     user = user_repository.select(id)
+#     return render_template("/edit.html", user=user)
 
 # # UPDATE
-# # PUT '/tasks/<id>'
-# @tasks_blueprint.route("/tasks/<id>", methods=["POST"])
-# def update_task(id):
-#     description = request.form["description"]
-#     user_id = request.form["user_id"]
-#     duration = request.form["duration"]
-#     completed = request.form["completed"]
-#     user = user_repository.select(user_id)
-#     task = Task(description,user,duration,completed, id)
-#     task_repository.update(task)
-#     return redirect("/tasks")
+# @app_blueprint.route("/<id>",methods=["POST"])
+# def update_user(id):
+#     name = request.form["name"]
+#     balance = request.form["balance"]
+#     budget = request.form["budget"]
+#     account = User(name,balance,budget,id)
+#     user_repository.update(account)
+#     return redirect("/")
 
-# # ____________________^
-
-# # DELETE
-# # DELETE '/tasks/<id>'
-
-# @tasks_blueprint.route("/tasks/<id>/delete", methods=["POST"])
-# def delete_task(id):
-#     task_repository.delete(id)
-#     return redirect("/tasks")
+# DELETE
+@app_blueprint.route("/users/<id>/delete",methods=["POST"])
+def delete_user(id):
+    user_repository.delete(id)
+    return redirect("/users")

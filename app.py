@@ -3,12 +3,14 @@ from flask import Flask, render_template
 from controllers.app_controller import app_blueprint
 from controllers.user_controller import users_blueprint
 from controllers.merchant_controller import merchants_blueprint
+from controllers.tag_controller import tags_blueprint
 
 app = Flask(__name__)
 
 app.register_blueprint(app_blueprint)
 app.register_blueprint(users_blueprint)
 app.register_blueprint(merchants_blueprint)
+app.register_blueprint(tags_blueprint)
 
 @app.route('/')
 def home():
