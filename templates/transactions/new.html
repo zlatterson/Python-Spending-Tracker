@@ -6,22 +6,46 @@
 {{user.id}} {{user.name}}
 
 <form action="/" method="post">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" placeholder="Full Name" required autofocus>
-  </div>
-
-  <div>
-    <label for="Account Balance">Account Balance:</label>
-    <input type="number" id="balance" name="balance" placeholder="£" required>
-  </div>
-
-  <div>
-      <label for="Daily Budget">Daily Budget:</label>
-      <input type="number" id="budget" name="budget" placeholder="£" required>
+<!-- 
+  <div class="dropdown">
+    <span class = box>
+      {%for merchant in merchants %}
+      {% if loop.index <= 1 %}
+      <option value={{merchant.id}} class="dropbtn">{{merchant.name}}</option>
+      {% endif %}
+      {% endfor %}
+      
+    </span>
+    <div class="dropdown-content">
+        {% for merchant in merchants %}
+        {% if loop.index > 1%}
+        <a><option value="{{merchant.id}}">{{merchant.name}}</option></a>
+        {% endif %}
+        {% endfor %}
+        <a>Add Merchant</a>
     </div>
+  </div> -->
 
-  <button type="submit">Create Account</button>
+  <label for="item">Select an Item:</label>
+  <select name="item_id" id="item">
+    {% for item in items %}
+    <option value="{{ item.id }}">{{ item.name }}</option>
+    {% endfor %}
+  </select>
+  <a href="/items/new">New Item</a>
+  <br>  
+
+  <label for="merchant">Select a Merchant:</label>
+    <select name="merchant_id" id="merchant">
+      {% for merchant in merchants %}
+      <option value="{{ merchant.id }}">{{ merchant.name }}</option>
+      {% endfor %}
+    </select>
+    <a href="/merchants/{{user.id}}/new">New merchant</a>
+    <br>
+
+
+  <button type="submit">Make Transaction</button>
 
 </form>
 

@@ -6,28 +6,27 @@ import repositories.merchant_repository as merchant_repository
 
 merchants_blueprint = Blueprint("merchant", __name__)
 
-@merchants_blueprint.route("/<id>/merchants")
+@merchants_blueprint.route("/merchants/<id>")
 def merchant(id):
     merchants = merchant_repository.select_all()
     print(merchants)
     return render_template("/merchants/index.html", merchants=merchants)
 
 # NEW
-@merchants_blueprint.route("/<id>/merchants/new")
+@merchants_blueprint.route("/merchants/<id>/new")
 def new_merchant(id):
     merchants = merchant_repository.select_all()
     return render_template("merchants/new.html", merchants=merchants)
 
 # CREATE
-@merchants_blueprint.route("/<id>/merchants",methods=["POST"])
+@merchants_blueprint.route("/merchants/<id>",methods=["POST"])
 def create_merchant(id):
     name = request.form["merchant_name"]
     received = 0
     merchant = Merchant(name,received)
+    print(merchant)
     merchant_repository.save(merchant)
-    route = "/"+id+"/merchants"
-    print(route)
-    return redirect(route)
+    return redirect("merchants/"+id)
 
 # # SHOW
 @merchants_blueprint.route("/merchants/<id>")

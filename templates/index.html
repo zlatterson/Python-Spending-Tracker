@@ -5,11 +5,11 @@
 
 <div class="dropdown">
     <span class = box>
-        <a href="/new"><button class="dropbtn">Hover to select account or click here to Create Account </button></a>
+        <a href="users/new"><button class="dropbtn">Hover to select account or click here to Create Account </button></a>
     </span>
     <div class="dropdown-content">
         {% for user in users %}
-        <a href="/{{user.id}}">{{user.name}}</a>
+        <a href="/users/{{user.id}}">{{user.name}}</a>
         {% endfor %}
     </div>
 </div>
