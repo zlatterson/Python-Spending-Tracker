@@ -5,6 +5,8 @@
 
 <p>{{user.id}} : {{user.name}}, daily allowance: {{user.daily_allowance}}, money: {{user.money}}</p>
 
+<!-- <a href="{{user.id}}/merchants">merchants</a> -->
+
 <form action="/{{user.id}}/edit">
     <button type="submit">Edit Account</button>
 </form>
@@ -12,5 +14,10 @@
 <form action="/{{user.id}}/delete" method="post">
     <button type="submit">Delete Account</button>
 </form>
+<a href="/transactions/{{user.id}}/new">New Transaction</a>
+
+{% for transaction in transactions if transaction.user.id==user.id %}
+{{transaction.user.id, transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.item.cost}}
+{% endfor %}
 
 {% endblock %}
