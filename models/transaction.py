@@ -7,5 +7,9 @@ class Transaction:
         self.time = time
         self.id = id
     
-    def pay():
-        pass
+    def sort_by_user(transactions,userid):
+        user_transactions = []
+        for transaction in transactions:
+            if transaction.user.id == userid:
+                user_transactions.append(transaction)
+        return user_transactions

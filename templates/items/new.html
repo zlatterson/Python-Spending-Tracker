@@ -25,13 +25,13 @@
       <input  autoComplete="on" list="suggestions"/> 
     </div> -->
 
-    <label for="merchant">Select a Merchant:</label>
+    <label for="merchant">Select a Payee:</label>
       <select name="merchant" id="merchant">
         {% for merchant in merchants %}
         <option value="{{ merchant.id }}">{{ merchant.name }}</option>
         {% endfor %}
       </select>
-      <a href="/{{user.id}}/merchants/new">Add merchant</a>
+      <a href="/{{user.id}}/merchants/new">Add payee</a>
       <br>
 
     

@@ -10,8 +10,8 @@
 <a href="/{{user.id}}/users/delete">Delete Account</a><br>
 <a href="/{{user.id}}/items/new">Make a new payment</a><br>
 
-{% for transaction in transactions if transaction.user.id==user.id %}
-{{transaction.user.id, transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.item.cost, transaction.time}}
+{% for transaction in user_transacts %}
+{{transaction.user.id, transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.item.cost, transaction.time}}<br>
 {% endfor %}
 
 {% endblock %}

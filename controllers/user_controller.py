@@ -1,5 +1,6 @@
 from flask import Flask, render_template,request,redirect
 from models.user import User
+from models.transaction import *
 from flask import Blueprint
 
 import repositories.user_repository as user_repository
@@ -17,7 +18,11 @@ users_blueprint = Blueprint("user", __name__)
 def show_users(id):
     user = user_repository.select(id)
     transacitons = transaction_repository.select_all()
-    return render_template("/users/show.html", user=user, transactions=transacitons)
+    print(transacitons)
+    user_transacts = Transaction.sort_by_user(transacitons,user.id)
+    print("New:")
+    print(user_transacts)
+    return render_template("/users/show.html", user=user, user_transacts=user_transacts)
 
 
 
