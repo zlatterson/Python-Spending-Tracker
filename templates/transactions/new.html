@@ -26,27 +26,36 @@
     </div>
   </div> -->
 
-  <label for="item">Select an Item:</label>
-  <select name="item_id" id="item">
-    {% for item in items %}
-    <option value="{{ item.id }}">{{ item.name }}</option>
-    {% endfor %}
-  </select>
-  <a href="/items/new">New Item</a>
-  <br>  
-
-  <label for="merchant">Select a Merchant:</label>
-    <select name="merchant_id" id="merchant">
-      {% for merchant in merchants %}
-      <option value="{{ merchant.id }}">{{ merchant.name }}</option>
+    <label for="item">Select an Item:</label>
+    <select name="item_id" id="item">
+      {% for item in items %}
+      <option value="{{ item.id }}">{{ item.name }}</option>
       {% endfor %}
     </select>
-    <a href="/merchants/{{user.id}}/new">New merchant</a>
+    <a href="/items/new">New Item</a>
+    <br>  
+
+    <!-- <label for="merchant">Select a Merchant:</label>
+      <select name="merchant_id" id="merchant">
+        {% for merchant in merchants %}
+        <option value="{{ merchant.id }}">{{ merchant.name }}</option>
+        {% endfor %}
+      </select>
+      <a href="/merchants/{{user.id}}/new">New merchant</a>
+      <br> -->
+
+
+
+    <label for="items">Buy an item:</label>
+      <datalist id="suggestions" name = "item_id">
+        {% for item in items %}
+        <option>{{ item.name }}</option>
+        {% endfor %}
+      </datalist>
+      <input  autoComplete="on" list="suggestions"/> 
     <br>
 
-
   <button type="submit">Make Transaction</button>
-
 </form>
 
 {% endblock %}

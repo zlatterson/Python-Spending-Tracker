@@ -6,3 +6,6 @@ class Transaction:
         self.cost = cost
         self.time = time
         self.id = id
+    
+    def pay():
+        pass

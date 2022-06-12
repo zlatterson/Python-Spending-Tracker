@@ -26,10 +26,10 @@ def create_merchant(id):
     merchant = Merchant(name,received)
     print(merchant)
     merchant_repository.save(merchant)
-    return redirect("merchants/"+id)
+    return redirect("/users/")
 
 # # SHOW
-@merchants_blueprint.route("/merchants/<id>")
+@merchants_blueprint.route("/merchants")
 def show_merchant(id):
     merchant = merchant_repository.select(id)
     return render_template("merchants/show.html", merchant=merchant)

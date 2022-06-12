@@ -6,10 +6,11 @@
 <p>{{user.id}} : {{user.name}}, daily allowance: {{user.daily_allowance}}, money: {{user.money}}</p>
 
 <!-- <a href="{{user.id}}/merchants">merchants</a> -->
-<a href="/users/{{user.id}}/edit">Edit Account</a><br>
-<a href="/users/{{user.id}}/delete">Delete Account</a><br>
-<a href="/transactions/{{user.id}}/new">New Transaction</a><br>
-
+<a href="/{{user.id}}/users/edit">Edit Account</a><br>
+<a href="/{{user.id}}/users/delete">Delete Account</a><br>
+<a href="/{{user.id}}/transactions/new">New Transaction</a><br>
+<a href="/{{user.id}}/items/new">Pay new payee</a><br>
+<a href="/{{user.id}}/items/">Purchase item again</a><br>
 
 {% for transaction in transactions if transaction.user.id==user.id %}
 {{transaction.user.id, transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.item.cost, transaction.time}}

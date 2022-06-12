@@ -14,7 +14,7 @@ import repositories.item_repository as item_repository
 transactions_blueprint = Blueprint("transaction", __name__)
 
 # GET
-@transactions_blueprint.route("/transactions/<id>/new")
+@transactions_blueprint.route("/<id>/transactions/new")
 def transaction(id):
     user = user_repository.select(id)
     merchants = merchant_repository.select_all()

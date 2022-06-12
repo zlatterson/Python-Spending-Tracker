@@ -13,7 +13,7 @@ users_blueprint = Blueprint("user", __name__)
 #     return render_template("/index.html", users=users)
 
 # SHOW
-@users_blueprint.route("/users/<id>")
+@users_blueprint.route("/<id>/users")
 def show_users(id):
     user = user_repository.select(id)
     transacitons = transaction_repository.select_all()
@@ -38,23 +38,23 @@ def create_user():
     return redirect("/users")
 
 # EDIT
-@users_blueprint.route("/users/<id>/edit")
+@users_blueprint.route("/<id>/users/edit")
 def edit_user(id):
     user = user_repository.select(id)
     return render_template("/users/edit.html", user=user)
 
 # UPDATE
-@users_blueprint.route("/users/<id>",methods=["POST"])
+@users_blueprint.route("/<id>/users",methods=["POST"])
 def update_user(id):
     name = request.form["name"]
     balance = request.form["balance"]
     budget = request.form["budget"]
     account = User(name,balance,budget,id)
     user_repository.update(account)
-    return redirect("/users/"+id)
+    return redirect("/"+id+"/users")
 
 # DELETE
-@users_blueprint.route("/users/<id>/delete",methods=["POST"])
+@users_blueprint.route("/<id>/users/delete",methods=["POST"])
 def delete_user(id):
     user_repository.delete(id)
     return redirect("/")
