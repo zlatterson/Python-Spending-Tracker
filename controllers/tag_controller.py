@@ -13,10 +13,11 @@ def tag():
 
 
 # NEW
-@tags_blueprint.route("/tags/new")
-def new_tag():
+@tags_blueprint.route("/tags/<id>/new")
+def new_tag(id):
+
     tags = tag_repository.select_all()
-    return render_template("tags/new.html", tags=tags)
+    return render_template("/tags/new.html", tags=tags)
 
 # # CREATE
 @tags_blueprint.route("/tags",methods=["POST"])

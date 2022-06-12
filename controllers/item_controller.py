@@ -1,4 +1,6 @@
+from datetime import datetime
 from flask import Flask, render_template,request,redirect
+from models.merchant import Merchant
 from models.transaction import Transaction
 from models.user import User
 from models.tag import Tag
@@ -36,9 +38,25 @@ def create_user(id):
     item_repository.save(item)
     # item saved: working
     user_object = user_repository.select(id)
-    transaction = Transaction(merchant_object,user_object,item,cost, "11/11")
+    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    transaction = Transaction(merchant_object,user_object,item,cost, dt_string)
     transaciton_repository.save(transaction)
     # reduce user money
+    updated_user_cash = int(user_object.money) - int(cost)
+    updated_user_daily_allowance = int(user_object.daily_allowance) - int(cost)
+    updated_user = User(user_object.name,updated_user_cash,updated_user_daily_allowance,id)
+    user_repository.update(updated_user)
+
+    updated_merchant_cash = int(merchant_object.money_received) + int(cost)
+    updated_merchant = Merchant(merchant_object.name,updated_merchant_cash,merchant_object.id)
+    merchant_repository.update(updated_merchant)
+    # reduce user money:working
+
+    # update tag
+    updated_tag_used = int(tag_object.times_used) + 1
+    updated_tag = Tag(tag_object.name,updated_tag_used,tag_object.id)
+    tag_repository.update(updated_tag)
+
 
     return redirect("/items")
 
