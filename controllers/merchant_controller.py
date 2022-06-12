@@ -1,32 +1,35 @@
 from flask import Flask, render_template,request,redirect
 from models.merchant import Merchant
+from models.user import User
 from flask import Blueprint
 
 import repositories.merchant_repository as merchant_repository
+import repositories.user_repository as user_repository
 
 merchants_blueprint = Blueprint("merchant", __name__)
 
-@merchants_blueprint.route("/merchants/<id>")
+@merchants_blueprint.route("/<id>/merchants/")
 def merchant(id):
     merchants = merchant_repository.select_all()
     print(merchants)
     return render_template("/merchants/index.html", merchants=merchants)
 
 # NEW
-@merchants_blueprint.route("/merchants/<id>/new")
+@merchants_blueprint.route("/<id>/merchants/new")
 def new_merchant(id):
+    user = user_repository.select(id)
     merchants = merchant_repository.select_all()
-    return render_template("merchants/new.html", merchants=merchants)
+    return render_template("merchants/new.html", merchants=merchants, user=user)
 
 # CREATE
-@merchants_blueprint.route("/merchants/<id>",methods=["POST"])
+@merchants_blueprint.route("/<id>/merchants/",methods=["POST"])
 def create_merchant(id):
     name = request.form["merchant_name"]
     received = 0
     merchant = Merchant(name,received)
     print(merchant)
     merchant_repository.save(merchant)
-    return redirect("/users/")
+    return redirect("/"+id+"/items/new")
 
 # # SHOW
 @merchants_blueprint.route("/merchants")

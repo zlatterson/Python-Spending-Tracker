@@ -31,7 +31,7 @@
         <option value="{{ merchant.id }}">{{ merchant.name }}</option>
         {% endfor %}
       </select>
-      <a href="/merchants/{{user.id}}/new">Add merchant</a>
+      <a href="/{{user.id}}/merchants/new">Add merchant</a>
       <br>
 
     
@@ -41,7 +41,7 @@
       <option value="{{ tag.id }}">{{ tag.name }}</option>
       {% endfor %}
     </select>
-    <a href="/tags/{{user.id}}/new">Add tag</a>
+    <a href="/{{user.id}}/tags/new">Add tag</a>
     <br>
 
     <div>

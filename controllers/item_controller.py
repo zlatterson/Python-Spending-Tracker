@@ -58,7 +58,7 @@ def create_user(id):
     tag_repository.update(updated_tag)
 
 
-    return redirect("/items")
+    return redirect("/"+id+"/users")
 
 @items_blueprint.route("/items")
 def show_merchant():

@@ -1,8 +1,10 @@
 from flask import Flask, render_template,request,redirect
 from models.tag import Tag
+from models.user import User
 from flask import Blueprint
 
 import repositories.tag_repository as tag_repository
+import repositories.user_repository as user_repository
 
 tags_blueprint = Blueprint("tag", __name__)
 
@@ -13,19 +15,19 @@ def tag():
 
 
 # NEW
-@tags_blueprint.route("/tags/<id>/new")
+@tags_blueprint.route("/<id>/tags/new")
 def new_tag(id):
-
+    user = user_repository.select(id)
     tags = tag_repository.select_all()
-    return render_template("/tags/new.html", tags=tags)
+    return render_template("/tags/new.html", tags=tags,user=user)
 
 # # CREATE
-@tags_blueprint.route("/tags",methods=["POST"])
-def create_tag():
+@tags_blueprint.route("/<id>/tags",methods=["POST"])
+def create_tag(id):
     name = request.form["tag_name"]
     tag = Tag(name,0)
     tag_repository.save(tag)
-    return redirect("/tags")
+    return redirect("/"+id+"/items/new")
 
 # # SHOW
 # @users_blueprint.route("/users/<id>")

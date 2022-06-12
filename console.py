@@ -113,7 +113,7 @@ for item in items:
     print(item.id, item.name, item.cost, item.tag.name, item.tag.times_used, item.merchant.name, item.cost)
     print(item.merchant, item.tag)
 # select all: working
-
+ 
 specific_item = item_repository.select(item2.id)
 print(specific_item.name, specific_item.id, specific_item.tag.name, specific_item.merchant.name, specific_item.cost)
 

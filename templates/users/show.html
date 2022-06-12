@@ -8,8 +8,6 @@
 <!-- <a href="{{user.id}}/merchants">merchants</a> -->
 <a href="/{{user.id}}/users/edit">Edit Account</a><br>
 <a href="/{{user.id}}/users/delete">Delete Account</a><br>
-<a href="/{{user.id}}/transactions/new">New Transaction</a><br>
-<a href="/{{user.id}}/items/">Purchase item again</a><br>
 <a href="/{{user.id}}/items/new">Make a new payment</a><br>
 
 {% for transaction in transactions if transaction.user.id==user.id %}
