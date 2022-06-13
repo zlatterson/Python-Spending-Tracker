@@ -28,11 +28,26 @@ def show_users(id):
     print("date sorted:")
     print(date_sorted)
     # working
-    month_sorted = Transaction.sort_by_month(date_sorted,"2022","06")
+    current_date = str(datetime.date(datetime.now()))
+    cur_year = current_date[0:4]
+    cur_month = current_date[5:7]
+    cur_day = current_date[8:10]
+    month_sorted = Transaction.sort_by_month(date_sorted,cur_year,cur_month)
+
+    month_fmt = datetime(day=int(cur_day), month=int(cur_month), year=int(cur_year)).strftime('%A %d %B %Y')
+    print(month_fmt)
+
     print("month sorted:")
     print(month_sorted)
     monthly_expendature = Transaction.find_monthly_expendature(month_sorted)
-    return render_template("/users/show.html", user=user, user_transacts=date_sorted, monthly_expendature=monthly_expendature)
+    green_if_monthly = Transaction.green_text(monthly_expendature, user.daily_allowance)
+    red_if_monthly = Transaction.red_text(monthly_expendature, user.daily_allowance)
+    return render_template("/users/show.html", 
+    user=user, 
+    user_transacts=date_sorted, 
+    green_if_monthly=green_if_monthly,
+    red_if_monthly=red_if_monthly,
+    month_fmt = month_fmt)
 
 @users_blueprint.route("/users/<id>/<year>/<month>")
 def show_users_month(id,year,month):
@@ -44,9 +59,19 @@ def show_users_month(id,year,month):
     date_sorted = Transaction.sort_by_time(user_transacts)
     # working
     month_sorted = Transaction.sort_by_month(date_sorted,year,month)
+
+    month_fmt = month + "/" + year
+
+
     monthly_expendature = Transaction.find_monthly_expendature(month_sorted)
-    print(monthly_expendature)
-    return render_template("/users/show.html", user=user, user_transacts=month_sorted,monthly_expendature=monthly_expendature)
+    green_if_monthly = Transaction.green_text(monthly_expendature, user.daily_allowance)
+    red_if_monthly = Transaction.red_text(monthly_expendature, user.daily_allowance)
+    return render_template("/users/show.html", 
+    user=user, 
+    user_transacts=month_sorted,
+    green_if_monthly=green_if_monthly,
+    red_if_monthly=red_if_monthly,
+    month_fmt=month_fmt)
  
 
 # NEW

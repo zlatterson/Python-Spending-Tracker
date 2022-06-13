@@ -91,9 +91,25 @@
     padding: 2rem;
   }
 
-  #money_main{
+  #money-main{
     color:#233149;
   }
-  .money_added{
+  #green-month{
     color:#4bcd80;
+  }
+   
+  .box{
+    display:flex;
+  }
+
+  #red-month{
+    color:#233149;
+  }
+  .same-line {
+    display: inline-block;
+    white-space: nowrap;
+}
+  #sub-date{
+    font-size: xx-small;
+    size:1rem;
   }

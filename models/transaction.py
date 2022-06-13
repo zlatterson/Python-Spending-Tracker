@@ -42,4 +42,19 @@ class Transaction:
             amount += transaction.item.cost
         return amount
 
+    # Two functions with two varaibles, one will return None. To bypass pure HTML restrictions
+
+    def green_text(month_cur,month_max):
+        value = ""
+        if month_cur < month_max:
+            value = "£"+str(month_cur)+"/"
+        return value
+
+
+    def red_text(month_cur,month_max):
+        value = ""
+        if month_cur > month_max:
+            value = "£"+str(month_cur)+"/"
+        return value
+
 

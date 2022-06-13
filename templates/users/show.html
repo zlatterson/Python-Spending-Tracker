@@ -11,10 +11,17 @@
         <a href="/users/{{user.id}}/items/new">Make a new payment</a><br>
     </div>
     <div class="main">
-    <h1 id="money_main">£{{user.money}}</h1>
-    <h3 id="money_sub">£{{monthly_expendature}}/£{{user.daily_allowance}} monthly allowance</h3>
+    <h1 class="same-line" id="money-main">£{{user.money}}</h1>
+    <div class="same-line" id="sub_date">{{month_fmt}}</div>
+    <br>
+    <div box class="box">
+        <div class="same-line" id="green-month">{{green_if_monthly}}</div>
+        <div class="same-line" id="red-month">{{red_if_monthly}}</div>
+        <div class="same-line">£{{user.daily_allowance}} monthly allowance</div>
+    </div>
+    <br>
     {% for transaction in user_transacts %}
-    {{transaction.user.id, transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.item.cost, transaction.time}}<br>
+    {{transaction.user.id, transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.item.cost, transaction.time}}<hr>
     {% endfor %}
     </div>
 </div>
