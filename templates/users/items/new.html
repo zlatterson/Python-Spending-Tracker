@@ -7,7 +7,7 @@
 
 <label value={{user.id}} name=userid>{{user.id}}</label>
 
-<form action="/{{user.id}}/items" method="post">
+<form action="/users/{{user.id}}/items" method="post">
 
 
   <div>
@@ -31,7 +31,7 @@
         <option value="{{ merchant.id }}">{{ merchant.name }}</option>
         {% endfor %}
       </select>
-      <a href="/{{user.id}}/merchants/new">Add payee</a>
+      <a href="/users/{{user.id}}/merchants/new">Add payee</a>
       <br>
 
     
@@ -41,7 +41,7 @@
       <option value="{{ tag.id }}">{{ tag.name }}</option>
       {% endfor %}
     </select>
-    <a href="/{{user.id}}/tags/new">Add tag</a>
+    <a href="/users/{{user.id}}/tags/new">Add tag</a>
     <br>
 
     <div>

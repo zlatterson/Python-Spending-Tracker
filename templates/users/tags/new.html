@@ -11,7 +11,7 @@
 </ul>
 <p>{% endfor %}</p>
 
-<form action="/{{user.id}}/tags" method="post">
+<form action="/users/{{user.id}}/tags" method="post">
     <div>
       <label for="name">Tag:</label>
       <input type="text" id="tag_name" name="tag_name" placeholder="Food, toy, etc..." required autofocus>

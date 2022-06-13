@@ -17,16 +17,16 @@ import repositories.item_repository as item_repository
 items_blueprint = Blueprint("item", __name__)
 
 # GET
-@items_blueprint.route("/<id>/items/new")
+@items_blueprint.route("/users/<id>/items/new")
 def transaction(id):
     user = user_repository.select(id)
     merchants = merchant_repository.select_all()
     items = item_repository.select_all()
     tags = tag_repository.select_all()
-    return render_template("/items/new.html", user=user, merchants=merchants, items=items, tags=tags)
+    return render_template("/users/items/new.html", user=user, merchants=merchants, items=items, tags=tags)
 
 # CREATE
-@items_blueprint.route("/<id>/items",methods=["POST"])
+@items_blueprint.route("/users/<id>/items",methods=["POST"])
 def create_user(id):
     name = request.form["item"]
     cost = request.form["cost"]
@@ -58,9 +58,9 @@ def create_user(id):
     tag_repository.update(updated_tag)
 
 
-    return redirect("/"+id+"/users")
+    return redirect("/users/"+id)
 
-@items_blueprint.route("/items")
+@items_blueprint.route("/users/items")
 def show_merchant():
     items = item_repository.select_all()
-    return render_template("/items/show.html", items=items)
+    return render_template("/users/items/show.html", items=items)

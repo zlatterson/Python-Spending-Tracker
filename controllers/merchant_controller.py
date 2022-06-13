@@ -8,43 +8,43 @@ import repositories.user_repository as user_repository
 
 merchants_blueprint = Blueprint("merchant", __name__)
 
-@merchants_blueprint.route("/<id>/merchants/")
+@merchants_blueprint.route("/users/<id>/merchants/")
 def merchant(id):
     merchants = merchant_repository.select_all()
     print(merchants)
-    return render_template("/merchants/index.html", merchants=merchants)
+    return render_template("/users/merchants/index.html", merchants=merchants)
 
 # NEW
-@merchants_blueprint.route("/<id>/merchants/new")
+@merchants_blueprint.route("/users/<id>/merchants/new")
 def new_merchant(id):
     user = user_repository.select(id)
     merchants = merchant_repository.select_all()
-    return render_template("merchants/new.html", merchants=merchants, user=user)
+    return render_template("/users/merchants/new.html", merchants=merchants, user=user)
 
 # CREATE
-@merchants_blueprint.route("/<id>/merchants/",methods=["POST"])
+@merchants_blueprint.route("/users/<id>/merchants/",methods=["POST"])
 def create_merchant(id):
     name = request.form["merchant_name"]
     received = 0
     merchant = Merchant(name,received)
     print(merchant)
     merchant_repository.save(merchant)
-    return redirect("/"+id+"/items/new")
+    return redirect("/users/"+id+"/items/new")
 
 # # SHOW
-@merchants_blueprint.route("/merchants")
+@merchants_blueprint.route("/users/merchants")
 def show_merchant(id):
     merchant = merchant_repository.select(id)
-    return render_template("merchants/show.html", merchant=merchant)
+    return render_template("/users/merchants/show.html", merchant=merchant)
 
 # # EDIT
-@merchants_blueprint.route("/merchants/<id>/edit")
+@merchants_blueprint.route("/users/<id>/merchants/edit")
 def edit_merchant(id):
     merchant = merchant_repository.select(id)
-    return render_template("merchants/edit.html", merchant=merchant)
+    return render_template("/users/merchants/edit.html", merchant=merchant)
 
 # # UPDATE
-@merchants_blueprint.route("/merchants/<id>",methods=["POST"])
+@merchants_blueprint.route("/users/merchants/<id>",methods=["POST"])
 def update_user(id):
     name = request.form["merchant_name"]
     received = request.form["received"]
