@@ -27,8 +27,26 @@ def show_users(id):
     date_sorted = Transaction.sort_by_time(user_transacts)
     print("date sorted:")
     print(date_sorted)
-    return render_template("/users/show.html", user=user, user_transacts=date_sorted)
+    # working
+    month_sorted = Transaction.sort_by_month(date_sorted,"2022","06")
+    print("month sorted:")
+    print(month_sorted)
+    monthly_expendature = Transaction.find_monthly_expendature(month_sorted)
+    return render_template("/users/show.html", user=user, user_transacts=date_sorted, monthly_expendature=monthly_expendature)
 
+@users_blueprint.route("/users/<id>/<year>/<month>")
+def show_users_month(id,year,month):
+    user = user_repository.select(id)
+    transacitons = transaction_repository.select_all()
+    print(transacitons)
+    user_transacts = Transaction.sort_by_user(transacitons,user.id)
+    # sort by transacitons:working
+    date_sorted = Transaction.sort_by_time(user_transacts)
+    # working
+    month_sorted = Transaction.sort_by_month(date_sorted,year,month)
+    monthly_expendature = Transaction.find_monthly_expendature(month_sorted)
+    print(monthly_expendature)
+    return render_template("/users/show.html", user=user, user_transacts=month_sorted,monthly_expendature=monthly_expendature)
  
 
 # NEW
