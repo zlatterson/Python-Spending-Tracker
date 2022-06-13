@@ -24,8 +24,7 @@ def show_users(id):
     print("New:")
     print(user_transacts)
     # sort by transacitons:working
-    dt_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    date_sorted = Transaction.sort_by_time(user_transacts,dt_string)
+    date_sorted = Transaction.sort_by_time(user_transacts)
     print("date sorted:")
     print(date_sorted)
     return render_template("/users/show.html", user=user, user_transacts=date_sorted)

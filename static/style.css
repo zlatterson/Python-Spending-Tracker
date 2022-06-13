@@ -73,3 +73,27 @@
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #f1f1f1;}
+
+
+  .parent {
+    display: grid;
+    grid-template-columns: minmax(100px, 25%) 1fr;
+  }
+
+  .sidebar {
+    height: 100vh;
+    background: #f7f7f7;
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .content {
+    padding: 2rem;
+  }
+
+  #money_main{
+    color:#233149;
+  }
+  .money_added{
+    color:#4bcd80;
+  }

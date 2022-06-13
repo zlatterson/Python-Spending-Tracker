@@ -43,8 +43,7 @@ def create_user(id):
     transaciton_repository.save(transaction)
     # reduce user money
     updated_user_cash = int(user_object.money) - int(cost)
-    updated_user_daily_allowance = int(user_object.daily_allowance) - int(cost)
-    updated_user = User(user_object.name,updated_user_cash,updated_user_daily_allowance,id)
+    updated_user = User(user_object.name,updated_user_cash,user_object.daily_allowance,id)
     user_repository.update(updated_user)
 
     updated_merchant_cash = int(merchant_object.money_received) + int(cost)

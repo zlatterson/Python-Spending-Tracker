@@ -19,22 +19,6 @@ class Transaction:
                 user_transactions.append(transaction)
         return user_transactions
 
-    def sort_by_time(transactions,time=None):
-        # # sorted_by_date = []
-        # datetime_object = datetime.strptime(transactions.time)
-        # sort = sorted(datetime_object)
-        # # sort = transactions.time.sort(key=lambda date: time(date, "%d/%m/%Y %H:%M:%S"))
-
-        # transaction_time = []
-        # for transaction in transactions:
-        #     transaction_time.append(transaction.time)
-        # sort_times = sorted(transaction_time)
-
-        # sorted_list = transactions.sort(key=lambda r: r.time)
-        sorted_list = sorted(transactions, key=attrgetter('time'))
-
-        # sorted_list = sorted(transactions,key=lambda k: datetime.strptime(k['time'], '%Y-%m-%d %I:%M:%S %p'),reverse=False)
-
-
-
+    def sort_by_time(transactions):
+        sorted_list = sorted(transactions, key=attrgetter('time'),reverse=True)
         return sorted_list
