@@ -91,15 +91,26 @@
     padding: 2rem;
   }
 
+  /* ___ */
+  .main{
+    padding:0.5rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+
   #money-main{
     color:#233149;
+    font-size: 3rem;
+    text-align: center;
   }
   #green-month{
     color:#4bcd80;
   }
    
-  .box{
+  .month-format{
     display:flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #red-month{
@@ -108,8 +119,26 @@
   .same-line {
     display: inline-block;
     white-space: nowrap;
+    text-align: center;
 }
   #sub-date{
-    font-size: xx-small;
-    size:1rem;
+    /* font-size: xx-small; */
+    color:#d7d7d7;
+  }
+
+  .items {
+    margin: 0.1rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+  .items > p {
+    font-size: 1rem;
+  }
+
+
+  hr{
+    border:1px solid whitesmoke;
+  }
+  #top-bar > h1{
+    text-align: center;
   }

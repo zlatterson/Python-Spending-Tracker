@@ -11,19 +11,27 @@
         <a href="/users/{{user.id}}/items/new">Make a new payment</a><br>
     </div>
     <div class="main">
-    <h1 class="same-line" id="money-main">£{{user.money}}</h1>
-    <div class="same-line" id="sub_date">{{month_fmt}}</div>
-    <br>
-    <div box class="box">
-        <div class="same-line" id="green-month">{{green_if_monthly}}</div>
-        <div class="same-line" id="red-month">{{red_if_monthly}}</div>
-        <div class="same-line">£{{user.daily_allowance}} monthly allowance</div>
+        <div class="top-bar">
+            <div id="sub-date">{{month_fmt}}</div>
+            <div id="money-main">£{{user.money}}</div>
+            <br>
+            <div box class="month-format">
+                <div class="same-line" id="green-month">{{green_if_monthly}}</div>
+                <div class="same-line" id="red-month">{{red_if_monthly}}</div>
+                <div class="same-line">£{{user.daily_allowance}} monthly allowance</div>
+            </div>
+        </div>
+
+        {% for transaction in user_transacts %}
+        <hr>
+        <div class="items">
+            {{transaction.merchant.name}}{{transaction.item.name.capitalize()   }}, {{transaction.item.tag.name, transaction.item.cost, transaction.time}}
+        </div>
+        <hr>
+        {% endfor %}
     </div>
-    <br>
-    {% for transaction in user_transacts %}
-    {{transaction.user.id, transaction.merchant.name, transaction.item.name, transaction.item.tag.name, transaction.item.cost, transaction.time}}<hr>
-    {% endfor %}
-    </div>
+    
+
 </div>
 
 
