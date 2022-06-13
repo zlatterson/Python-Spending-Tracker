@@ -38,7 +38,7 @@ def create_user(id):
     item_repository.save(item)
     # item saved: working
     user_object = user_repository.select(id)
-    dt_string = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    dt_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     transaction = Transaction(merchant_object,user_object,item,cost, dt_string)
     transaciton_repository.save(transaction)
     # reduce user money

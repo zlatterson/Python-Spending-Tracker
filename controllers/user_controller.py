@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, render_template,request,redirect
 from models.user import User
 from models.transaction import *
@@ -22,9 +23,14 @@ def show_users(id):
     user_transacts = Transaction.sort_by_user(transacitons,user.id)
     print("New:")
     print(user_transacts)
-    return render_template("/users/show.html", user=user, user_transacts=user_transacts)
+    # sort by transacitons:working
+    dt_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    date_sorted = Transaction.sort_by_time(user_transacts,dt_string)
+    print("date sorted:")
+    print(date_sorted)
+    return render_template("/users/show.html", user=user, user_transacts=date_sorted)
 
-
+ 
 
 # NEW
 @users_blueprint.route("/users/new")

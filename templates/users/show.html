@@ -3,11 +3,12 @@
 {% block content %}
 <h1>Spending Tracker</h1>
 
-<p>{{user.id}} : {{user.name}}, daily allowance: {{user.daily_allowance}}, money: {{user.money}}</p>
+<p>{{user.id}} : {{user.name}}, monthly allowance: {{user.daily_allowance}}, money: {{user.money}}</p>
 
 <!-- <a href="{{user.id}}/merchants">merchants</a> -->
 <a href="/users/{{user.id}}/edit">Edit Account</a><br>
 <a href="/users/{{user.id}}/delete">Delete Account</a><br>
+<a href="/users/{{user.id}}/transactions/new">Make a detailed transaction</a><br>
 <a href="/users/{{user.id}}/items/new">Make a new payment</a><br>
 
 {% for transaction in user_transacts %}

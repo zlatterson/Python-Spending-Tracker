@@ -5,57 +5,49 @@
 
 {{user.id}} {{user.name}}
 
-<form action="/" method="post">
-<!-- 
-  <div class="dropdown">
-    <span class = box>
-      {%for merchant in merchants %}
-      {% if loop.index <= 1 %}
-      <option value={{merchant.id}} class="dropbtn">{{merchant.name}}</option>
-      {% endif %}
-      {% endfor %}
-      
-    </span>
-    <div class="dropdown-content">
-        {% for merchant in merchants %}
-        {% if loop.index > 1%}
-        <a><option value="{{merchant.id}}">{{merchant.name}}</option></a>
-        {% endif %}
-        {% endfor %}
-        <a>Add Merchant</a>
-    </div>
-  </div> -->
+<label value={{user.id}} name=userid>{{user.id}}</label>
 
-    <label for="item">Select an Item:</label>
-    <select name="item_id" id="item">
-      {% for item in items %}
-      <option value="{{ item.id }}">{{ item.name }}</option>
-      {% endfor %}
-    </select>
-    <a href="/items/new">New Item</a>
-    <br>  
+<form action="/users/{{user.id}}/transactions" method="post">
 
-    <!-- <label for="merchant">Select a Merchant:</label>
-      <select name="merchant_id" id="merchant">
+
+  <div>
+    <label for="item name">Item name:</label>
+    <input type="text" id="item" name="item" placeholder="Item name" required>
+  </div>
+
+
+    <label for="merchant">Select a Payee:</label>
+      <select name="merchant" id="merchant">
         {% for merchant in merchants %}
         <option value="{{ merchant.id }}">{{ merchant.name }}</option>
         {% endfor %}
       </select>
-      <a href="/merchants/{{user.id}}/new">New merchant</a>
-      <br> -->
+      <a href="/users/{{user.id}}/merchants/new">Add payee</a>
+      <br>
 
-
-
-    <label for="items">Buy an item:</label>
-      <datalist id="suggestions" name = "item_id">
-        {% for item in items %}
-        <option>{{ item.name }}</option>
-        {% endfor %}
-      </datalist>
-      <input  autoComplete="on" list="suggestions"/> 
+    
+    <label for="tag">Select a Tag:</label>
+    <select name="tag" id="merchant">
+      {% for tag in tags %}
+      <option value="{{ tag.id }}">{{ tag.name }}</option>
+      {% endfor %}
+    </select>
+    <a href="/users/{{user.id}}/tags/new">Add tag</a>
     <br>
 
-  <button type="submit">Make Transaction</button>
+    <div>
+      <label for="item cost">Cost:</label>
+      <input type="number" id="cost" name="cost" placeholder="£" required>
+    </div>
+
+    <div>
+      <label for="time">Date and Time:</label>
+      <input type="text" id="time" name="time" placeholder="YYYY-MM-DD H:M:S" required>
+    </div>
+
+
+  <button type="submit">Buy Item</button>
+
 </form>
 
 {% endblock %}
