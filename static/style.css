@@ -297,3 +297,8 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+.month-dropdown{
+  background-color: #fab0a9;
+  border:1px solid black;
+}

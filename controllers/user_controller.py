@@ -58,7 +58,7 @@ def show_users(id):
     transactions_with_today_bool = Transaction.check_if_date_condition(update_transactions,current_date)
     tranasctions_with_money_formatted = Transaction.format_money(transactions_with_today_bool)
 
-
+    transaction_dates = Transaction.transaction_dates(update_transactions)
 
 
     return render_template("/users/show.html", 
@@ -66,7 +66,8 @@ def show_users(id):
     user_transacts=tranasctions_with_money_formatted, 
     green_if_monthly=green_if_monthly,
     red_if_monthly=red_if_monthly,
-    month_fmt = month_fmt)
+    month_fmt = month_fmt,
+    transaction_dates=transaction_dates)
 
 @users_blueprint.route("/users/<id>/<year>/<month>")
 def show_users_month(id,year,month):

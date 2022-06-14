@@ -10,8 +10,13 @@
             <input type="submit" class="pay-button"value="Make a new Payment" />
         </form>
         <a class="nav-link-active" href="/users/{{user.id}}">{{month_fmt}}</a>
-        <a class="nav-link" href="/users/{{user.id}}/Months">Select for Month</a>
+        <a class="nav-link" href="/users/{{user.id}}/Months">See your Months</a>
         <!-- <a href="/users/{{user.id}}/transactions/new">Make a detailed transaction</a> -->
+        <div class="month-dropdown">
+        {% for date in transaction_dates %}
+            <a href="{{user.id}}/{{date}}">{{date}}</a>
+        {% endfor %}
+        </div>
     </div>
     <div class="main">
         <div class="top-bar">
@@ -44,7 +49,7 @@
             <div class="dropdown-content2">
                 <div class="sub-date">{{transaction.time[8:10]}}/{{transaction.time[5:7]}}/{{transaction.time[0:4]}} {{transaction.time[10:19]}}</div>
                 {{transaction.item.name.capitalize()}}<br>
-                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:#4285f4;--b:5px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases
+                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:#4285f4;--b:100px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases
             </div>
         </div>
         {% endfor %}
@@ -66,7 +71,7 @@
             <div class="dropdown-content2">
                 <div class="sub-date">{{transaction.time[8:10]}}/{{transaction.time[5:7]}}/{{transaction.time[0:4]}} {{transaction.time[10:19]}}</div>
                 {{transaction.item.name.capitalize()}}<br>
-                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:#4285F4;--b:5px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases {{transaction.today}}
+                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:#4285F4;--b:100px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases {{transaction.today}}
             </div>
         </div>
         {% endfor %}

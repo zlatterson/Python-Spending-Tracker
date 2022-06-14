@@ -85,3 +85,25 @@ class Transaction:
         for transaction in transactions:
             transaction.item.cost = "{:,}".format(transaction.item.cost)
         return transactions
+
+# will return a list of transacitons, but only one per month
+    def transaction_dates(transaction_list):
+        transaction_dates = []
+        for transaction in transaction_list:
+            transaction_dates.append(transaction.time[0:7])
+        
+        remove_duplicates = list(dict.fromkeys(transaction_dates))
+        replace_hyphons = []
+        for transaction_date in remove_duplicates:
+            replace_hyphons.append(transaction_date.replace('-', '/'))
+        return replace_hyphons
+
+        
+
+        # {}
+        # one_per_month = []
+        # for transaction in transactions:
+        #     if transaction.time[0:10] == transactions
+        # else:
+        #     one_per_month.append(transaction)
+        
