@@ -10,11 +10,11 @@
             <input type="submit" class="pay-button"value="Make a new Payment" />
         </form>
         <a class="nav-link-active" href="/users/{{user.id}}">{{month_fmt}}</a>
-        <a class="nav-link" href="/users/{{user.id}}/Months">See your Months</a>
+        <div class="nav-link" href="/users/{{user.id}}/Months">Your Months</div>
         <!-- <a href="/users/{{user.id}}/transactions/new">Make a detailed transaction</a> -->
         <div class="month-dropdown">
         {% for date in transaction_dates %}
-            <a href="{{user.id}}/{{date}}">{{date}}</a>
+            <a class="month-box"href="{{user.id}}/{{date}}">{{date[5:7]}}/{{date[0:4]}}</a>
         {% endfor %}
         </div>
     </div>

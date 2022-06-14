@@ -299,6 +299,24 @@
 }
 
 .month-dropdown{
-  background-color: #fab0a9;
-  border:1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.month-box {
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#f8f8f8;
+	border-radius:4px;
+	border:1px solid #6e6e6e;
+	display:inline-block;
+	cursor:pointer;
+	color:#6e6e6e;
+	font-family:Arial;
+	font-size:15px;
+	padding:32px 15px;
+	text-decoration:none;
+  margin:10px
+
 }
