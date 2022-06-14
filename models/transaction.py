@@ -58,3 +58,14 @@ class Transaction:
         return value
 
 
+    def find_tag_total(tags):
+        tags_total = 0
+        for tag in tags:
+            tags_total += tag.times_used
+        return tags_total
+
+
+    def change_transaction_object_tag_into_percentage(transactions,tag_total):
+        for transaction in transactions:
+            transaction.item.tag.times_used = round(transaction.item.tag.times_used / tag_total * 100)
+        return transactions

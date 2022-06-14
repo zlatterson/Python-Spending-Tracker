@@ -6,13 +6,11 @@
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #f1f1f1;
     color: rgb(63, 63, 63);
     padding: 16px;
     font-size: 16px;
     border: none;
     min-width: 500px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
   
@@ -121,19 +119,32 @@
     white-space: nowrap;
     text-align: center;
 }
-  #sub-date{
+  .sub-date{
     /* font-size: xx-small; */
     color:#d7d7d7;
   }
 
-  .items {
-    margin: 0.1rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
+  /* .container {
+
+  } */
+  .container { 
+    display: flex; flex-wrap: wrap; 
+    background-color: rgb(247, 244, 244);
+    border-bottom: 1px solid white;
   }
-  .items > p {
-    font-size: 1rem;
-  }
+  .item {
+    flex-grow: 1; 
+    width: calc(33% - 2px); 
+   }
+   .item2 {
+    margin-top: auto;
+    margin-bottom: auto;
+    color:#233149;
+    font-size: 1.2rem;
+    flex-grow: 1; 
+    width: calc(33% - 2px); 
+    text-align: right;
+   }
 
 
   hr{
@@ -142,3 +153,88 @@
   #top-bar > h1{
     text-align: center;
   }
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown2 {
+  position: flex; flex-wrap: wrap;
+  display: inline-block;
+  border-bottom: 1px dashed whitesmoke;
+}
+
+  /* Dropdown Button */
+.dropbtn2 {
+  color: rgb(63, 63, 63);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  min-width: 700px;
+  z-index: 1;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content2 {
+
+  border-bottom: 1px dashed black;
+  display: none;
+  position: relative;
+  background-color: white;
+  z-index: 1;
+  min-width: 700px;
+  padding:16px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown2-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown2:hover .dropdown-content2 {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown2:hover .dropbtn2 {
+  /* border-right: 3px dashed black;
+  border-top: 3px solid white;
+  border-left:3px solid white; */
+  border-top: 1px dashed black;
+}
+
+
+
+.pie {
+  --p:20;
+  --b:22px;
+  --c:darkred;
+  --w:150px;
+
+  width: var(--w);
+  aspect-ratio: 1;
+  position: relative;
+  display: inline-grid;
+  margin: 5px;
+  place-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.pie:before,
+.pie:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.pie:before {
+  inset: 0;
+  background:
+    radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
+    conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+          mask: radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+}
+
+.no-round:before {
+  background-size: 0 0, auto;
+}
+.no-round:after {
+  content: none;
+}

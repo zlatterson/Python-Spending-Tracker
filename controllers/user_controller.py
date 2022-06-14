@@ -6,6 +6,7 @@ from flask import Blueprint
 
 import repositories.user_repository as user_repository
 import repositories.transaction_repository as transaction_repository
+import repositories.tag_repository as tag_repository
 
 users_blueprint = Blueprint("user", __name__)
 
@@ -42,9 +43,23 @@ def show_users(id):
     monthly_expendature = Transaction.find_monthly_expendature(month_sorted)
     green_if_monthly = Transaction.green_text(monthly_expendature, user.daily_allowance)
     red_if_monthly = Transaction.red_text(monthly_expendature, user.daily_allowance)
+
+    # Make transaction objects's times used into percentage number
+    # 1.find total transactions
+    print(len(user_transacts))
+    print("tags:")
+    tags = tag_repository.select_all()
+    tag_total = Transaction.find_tag_total(tags)
+
+    update_transactions = Transaction.change_transaction_object_tag_into_percentage(date_sorted,tag_total)
+    print(tag_total)
+
+
+
+
     return render_template("/users/show.html", 
     user=user, 
-    user_transacts=date_sorted, 
+    user_transacts=update_transactions, 
     green_if_monthly=green_if_monthly,
     red_if_monthly=red_if_monthly,
     month_fmt = month_fmt)
@@ -66,9 +81,16 @@ def show_users_month(id,year,month):
     monthly_expendature = Transaction.find_monthly_expendature(month_sorted)
     green_if_monthly = Transaction.green_text(monthly_expendature, user.daily_allowance)
     red_if_monthly = Transaction.red_text(monthly_expendature, user.daily_allowance)
+
+
+    tags = tag_repository.select_all()
+    tag_total = Transaction.find_tag_total(tags)
+
+    update_transactions = Transaction.change_transaction_object_tag_into_percentage(month_sorted,tag_total)
+
     return render_template("/users/show.html", 
     user=user, 
-    user_transacts=month_sorted,
+    user_transacts=update_transactions,
     green_if_monthly=green_if_monthly,
     red_if_monthly=red_if_monthly,
     month_fmt=month_fmt)
