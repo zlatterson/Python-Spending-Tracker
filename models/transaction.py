@@ -4,13 +4,14 @@ from operator import attrgetter
 # from controllers.item_controller import transaction
 
 class Transaction:
-    def __init__(self,merchant,user,item,cost,time=None,id=None):
+    def __init__(self,merchant,user,item,cost,time=None,id=None,today=False):
         self.merchant = merchant
         self.user = user
         self.item = item
         self.cost = cost
         self.time = time
         self.id = id
+        self.today = today
     
     def sort_by_user(transactions,userid):
         user_transactions = []
@@ -47,6 +48,7 @@ class Transaction:
     def green_text(month_cur,month_max):
         value = ""
         if month_cur < month_max:
+            value = "{:,}".format(month_cur)
             value = "£"+str(month_cur)+"/"
         return value
 
@@ -54,7 +56,8 @@ class Transaction:
     def red_text(month_cur,month_max):
         value = ""
         if month_cur > month_max:
-            value = "£"+str(month_cur)+"/"
+            value = "{:,}".format(month_cur)
+            value = "£"+str(value)+"/"
         return value
 
 
@@ -68,4 +71,17 @@ class Transaction:
     def change_transaction_object_tag_into_percentage(transactions,tag_total):
         for transaction in transactions:
             transaction.item.tag.times_used = round(transaction.item.tag.times_used / tag_total * 100)
+        return transactions
+
+    def check_if_date_condition(transactions,curdate):
+        todays_date = curdate[0:10]
+
+        for transaction in transactions:
+            if transaction.time[0:10] == todays_date:
+                transaction.today = True
+        return transactions
+
+    def format_money(transactions):
+        for transaction in transactions:
+            transaction.item.cost = "{:,}".format(transaction.item.cost)
         return transactions

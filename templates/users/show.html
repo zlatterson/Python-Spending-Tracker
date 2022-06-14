@@ -4,15 +4,17 @@
 
 <div class="parent">
     <div class="sidebar">
-        <p>{{user.id}}<br>{{user.name}}</p>
-        <a href="/users/{{user.id}}/edit">Edit Account</a><br>
-        <a href="/users/{{user.id}}/delete">Delete Account</a><br>
-        <a href="/users/{{user.id}}/transactions/new">Make a detailed transaction</a><br>
-        <a href="/users/{{user.id}}/items/new">Make a new payment</a><br>
+        <p id="user-link"><a href="/users/{{user.id}}/edit">{{user.name}}</a></p>
+
+        <form action="/users/{{user.id}}/items/new">
+            <input type="submit" class="pay-button"value="Make a new Payment" />
+        </form>
+        <a class="nav-link-active" href="/users/{{user.id}}">{{month_fmt}}</a>
+        <a class="nav-link" href="/users/{{user.id}}/Months">Select for Month</a>
+        <!-- <a href="/users/{{user.id}}/transactions/new">Make a detailed transaction</a> -->
     </div>
     <div class="main">
         <div class="top-bar">
-            <div class="sub-date">{{month_fmt}}</div>
             <div id="money-main">£{{user.money}}</div>
             <br>
             <div box class="month-format">
@@ -32,8 +34,7 @@
             </div>
         </div>
         {% endfor %} -->
-
-        {% for transaction in user_transacts %}
+        {% for transaction in user_transacts if transaction.today %}
         <div class="dropdown2">
                 <div class="dropbtn2">
                     {{transaction.merchant.name}}
@@ -43,7 +44,29 @@
             <div class="dropdown-content2">
                 <div class="sub-date">{{transaction.time[8:10]}}/{{transaction.time[5:7]}}/{{transaction.time[0:4]}} {{transaction.time[10:19]}}</div>
                 {{transaction.item.name.capitalize()}}<br>
-                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:blue;--b:5px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases
+                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:#4285f4;--b:5px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases
+            </div>
+        </div>
+        {% endfor %}
+        
+        
+        <div class="dropdown2">
+            <div class="dropbtn2">
+                <div class="sub-date">today</div>
+            </div>
+        </div>
+
+        {% for transaction in user_transacts if not transaction.today %}
+        <div class="dropdown2">
+                <div class="dropbtn2">
+                    {{transaction.merchant.name}}
+                    -£{{transaction.item.cost}}
+                </div>
+            </span>
+            <div class="dropdown-content2">
+                <div class="sub-date">{{transaction.time[8:10]}}/{{transaction.time[5:7]}}/{{transaction.time[0:4]}} {{transaction.time[10:19]}}</div>
+                {{transaction.item.name.capitalize()}}<br>
+                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:#4285F4;--b:5px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases {{transaction.today}}
             </div>
         </div>
         {% endfor %}

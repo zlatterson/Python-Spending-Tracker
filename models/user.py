@@ -4,3 +4,7 @@ class User:
         self.money = money
         self.daily_allowance = daily_allowance
         self.id = id
+
+    def format_money(user):
+        user.money = "{:,}".format(user.money)
+        return user
