@@ -5,12 +5,13 @@
 <div class="parent">
     <div class="sidebar">
       <p id="user-link"><a href="/users/{{user.id}}/edit">{{user.name}}</a></p>
-  
       <form action="/users/{{user.id}}/items/new">
           <input type="submit" class="pay-button"value="Make a new Payment" />
       </form>
-      <a class="nav-link" href="/users/{{user.id}}">Account {{month_fmt}}</a>
-      <a class="nav-link" href="/users/{{user.id}}/Months">Select for Month</a>
+      <br>
+      <a class="nav-link" href="/users/{{user.id}}">Overview</a>
+      <a class="nav-link" href="/users/{{user.id}}/merchants">Top 5</a>
+      <br>
   
     </div>
     <!-- main -->

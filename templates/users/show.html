@@ -10,7 +10,7 @@
         </form>
         <br>
         <a class="nav-link-active" href="/users/{{user.id}}">{{month_fmt}}</a>
-        <a class="nav-link" href="/users/{{user.id}}/merchants">Stats</a>
+        <a class="nav-link" href="/users/{{user.id}}/merchants">Top 5</a>
         <br>
         <div class="month-dropdown">
         {% for date in transaction_dates %}
@@ -21,6 +21,7 @@
     <!-- main content -->
     <div class="main">
         <br>
+        
         <div class="top-bar">
             <div id="money-main">£{{user.money}}</div>
             <br>
@@ -31,6 +32,7 @@
             </div>
         </div>
         <br>
+        
         {% for transaction in user_transacts if transaction.today %}
         <div class="dropdown2">
                 <div class="dropbtn2">

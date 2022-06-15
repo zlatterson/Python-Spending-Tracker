@@ -9,16 +9,15 @@
         </form>
         <br>
         <a class="nav-link" href="/users/{{user.id}}">Overview</a>
-        <a class="nav-link-active" href="/users/{{user.id}}/merchants">Stats</a>
+        <a class="nav-link-active" href="/users/{{user.id}}/merchants">Top 5</a>
         <br>
     </div>
     <!-- main -->
     <div class="main">
       <div class="form-background">
-
-        
+        <br>
+        <br>
         <div class="statbox">
-          Top 5 merchants:
         <section class="container-chart">
 
           <section class="chart">
@@ -36,7 +35,7 @@
             </section>
             <section class="row-bars">
               {% for merchant in merchants %}
-              <rbars style="width:{{merchant.received_percentage}}%"><section>£{{merchant.money_received}}</section> {{merchant.name}}</rbars>
+              <rbars style="width:{{merchant.received_percentage}}%">{{merchant.name}}<section>£{{merchant.money_received}}</section></rbars>
               {% endfor %}
             </section>
           </section>

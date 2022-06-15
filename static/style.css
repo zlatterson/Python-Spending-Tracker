@@ -80,6 +80,9 @@
 
   .sidebar {
     min-height: 140vh;
+    /* min-width: 44vh;
+    max-width:44vh; */
+    max-width: 49vh;
     height: 100%;
     background: #f7f7f7;
     font-size: 2rem;
@@ -330,7 +333,7 @@
 	/* border:5px solid rgb(255, 255, 255); */
 	display:inline-block;
 	cursor:pointer;
-	color:#393939;
+	color: #233149;
 	font-size:13px;
 	padding:22px 10px;
 	text-decoration:none;
@@ -338,12 +341,6 @@
 }
 
 /* percentage of merchants */
-.container-chart {
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 5%;
-}
-
 .chart {
   position: relative;
 }
@@ -370,38 +367,48 @@ cbars:first-child {
   position: absolute;
   top: 0;
   left: 0;
-  width: 300px;
+  width: 600px;
+  margin: 0;
+  padding-top: 40px;
+  
+  width: 100%;
+  height: 68vh;
+ 
+  background: rgb(255, 255, 255);
+  background-image: linear-gradient(rgba(241, 241, 241, 0.7) .1em, transparent .1em), linear-gradient(90deg, rgba(233, 233, 233, 0.7) .1em, transparent .1em);
+  background-size: 2.5em 2.5em;
 }
 
 rbars {
   display: block;
-  height: 20px;
-  margin-top: 20px;
+  height: 70px;
   max-width: 300px;
   padding: 5px;
+  display: block;
+  /* margin-left: auto;
+  margin-right: auto;
+  width: 40%; */
+  text-align: center;
+  line-height: 30px;
+  color:#233149;
 }
 
 rbars:nth-child(1) {
-  background-color: rgb(123, 218, 218);
+  background-color: #83bbff;
 }
 
 rbars:nth-child(2) {
-  background-color: rgb(151, 151, 237);
+  background-color:#8bdd7c;
 }
 
 rbars:nth-child(3) {
-  background-color: rgb(180, 252, 180);
+  background-color: #ffe583;
 }
 
 rbars:nth-child(4) {
-  background-color: rgb(206, 166, 226);
+  background-color: #ffc765;
 }
 
 rbars:nth-child(5) {
-  background-color: rgb(238, 182, 77);
-}
-
-.stat-box{
-  margin-top: 10%;
-  margin-left: 10%;
+  background-color: #f46565;
 }
