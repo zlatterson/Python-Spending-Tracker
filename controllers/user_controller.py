@@ -10,57 +10,33 @@ import repositories.tag_repository as tag_repository
 
 users_blueprint = Blueprint("user", __name__)
 
-# @users_blueprint.route("/users")
-# def user():
-#     users = user_repository.select_all() 
-#     return render_template("/index.html", users=users)
-
-# SHOW
 @users_blueprint.route("/users/<id>")
 def show_users(id):
     found_user = user_repository.select(id)
     user = User.format_money(found_user)
+
     transacitons = transaction_repository.select_all()
-    print(transacitons)
     user_transacts = Transaction.sort_by_user(transacitons,user.id)
-    print("New:")
-    print(user_transacts)
-    # sort by transacitons:working
     date_sorted = Transaction.sort_by_time(user_transacts)
-    print("date sorted:")
-    print(date_sorted)
-    # working
+
     current_date = str(datetime.date(datetime.now()))
     cur_year = current_date[0:4]
     cur_month = current_date[5:7]
     cur_day = current_date[8:10]
     month_sorted = Transaction.sort_by_month(date_sorted,cur_year,cur_month)
-
     month_fmt = datetime(day=int(cur_day), month=int(cur_month), year=int(cur_year)).strftime('%A %d %B %Y')
-    print(month_fmt)
-
-    print("month sorted:")
-    print(month_sorted)
     monthly_expendature = Transaction.find_monthly_expendature(month_sorted)
     green_if_monthly = Transaction.green_text(monthly_expendature, user.daily_allowance)
     red_if_monthly = Transaction.red_text(monthly_expendature, user.daily_allowance)
 
-    # Make transaction objects's times used into percentage number
-    # 1.find total transactions
-    print(len(user_transacts))
-    print("tags:")
     tags = tag_repository.select_all()
     tag_total = Transaction.find_tag_total(tags)
-
     update_transactions = Transaction.change_transaction_object_tag_into_percentage(date_sorted,tag_total)
-    print(tag_total)
-
     transactions_with_today_bool = Transaction.check_if_date_condition(update_transactions,current_date)
     tranasctions_with_money_formatted = Transaction.format_money(transactions_with_today_bool)
-
     transaction_dates = Transaction.transaction_dates(update_transactions)
 
-
+    user = User.format_monthly_allowance(user)
     return render_template("/users/show.html", 
     user=user, 
     user_transacts=tranasctions_with_money_formatted, 
@@ -73,33 +49,26 @@ def show_users(id):
 def show_users_month(id,year,month):
     found_user = user_repository.select(id)
     user = User.format_money(found_user)
+
     transacitons = transaction_repository.select_all()
-    print(transacitons)
     user_transacts = Transaction.sort_by_user(transacitons,user.id)
-    # sort by transacitons:working
     date_sorted = Transaction.sort_by_time(user_transacts)
-    # working
     month_sorted = Transaction.sort_by_month(date_sorted,year,month)
-
     month_fmt = month + "/" + year
-
-
     monthly_expendature = Transaction.find_monthly_expendature(month_sorted)
     green_if_monthly = Transaction.green_text(monthly_expendature, user.daily_allowance)
     red_if_monthly = Transaction.red_text(monthly_expendature, user.daily_allowance)
-
 
     tags = tag_repository.select_all()
     tag_total = Transaction.find_tag_total(tags)
 
     update_transactions = Transaction.change_transaction_object_tag_into_percentage(month_sorted,tag_total)
-
     current_date = str(datetime.date(datetime.now()))
     transactions_with_today_bool = Transaction.check_if_date_condition(update_transactions,current_date)
     tranasctions_with_money_formatted = Transaction.format_money(transactions_with_today_bool)
-
     transaction_dates = Transaction.transaction_dates(update_transactions)
 
+    user = User.format_monthly_allowance(user)
     return render_template("/users/show.html", 
     user=user, 
     user_transacts=tranasctions_with_money_formatted,

@@ -3,7 +3,13 @@
 {% block content %}
 <h1>Spending Tracker</h1>
 
-{{merchant.id}} : {{merchant.name}}, money received: {{merchant.money_received}}
+
+
+
+<table class="charts-css bar">
+    {{merchant.id}} : {{merchant.name}}, money received: {{merchant.money_received}} 
+</table>
+
 
 <form action="/merchants/{{merchant.id}}/edit">
     <button type="submit">Edit Merchant Account</button>

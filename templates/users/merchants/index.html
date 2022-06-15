@@ -1,13 +1,52 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<h1>Spending Tracker</h1>
+<div class="parent">
+    <div class="sidebar">
+        <p id="user-link"><a href="/users/{{user.id}}/edit">{{user.name}}</a></p>
+        <form action="/users/{{user.id}}/items/new">
+            <input type="submit" class="pay-button"value="Make a new Payment" />
+        </form>
+        <br>
+        <a class="nav-link" href="/users/{{user.id}}">Overview</a>
+        <a class="nav-link-active" href="/users/{{user.id}}/merchants">Stats</a>
+        <br>
+    </div>
+    <!-- main -->
+    <div class="main">
+      <div class="form-background">
 
-<p>{% for merchant in merchants %}</p>
-<ul>
-    <li>
-        {{merchant.id}} : {{merchant.name}}, money received: {{merchant.money_received}}, <a href="/merchants/{{merchant.id}}">Show</a>
-    </li>
-</ul>
-<p>{% endfor %}</p>
+        
+        <div class="statbox">
+          Top 5 merchants:
+        <section class="container-chart">
+
+          <section class="chart">
+            <section class="column-bars">
+              <cbars></cbars>
+              <cbars></cbars>
+              <cbars></cbars>
+              <cbars></cbars>
+              <cbars></cbars>
+              <cbars></cbars>
+              <cbars></cbars>
+              <cbars></cbars>
+              <cbars></cbars>
+              <cbars></cbars>
+            </section>
+            <section class="row-bars">
+              {% for merchant in merchants %}
+              <rbars style="width:{{merchant.received_percentage}}%"><section>£{{merchant.money_received}}</section> {{merchant.name}}</rbars>
+              {% endfor %}
+            </section>
+          </section>
+        </div>
+        </section>
+        <br>
+
+      </div>
+    </div>
+  </div>
+  
+
 {% endblock %}

@@ -10,16 +10,21 @@ merchants_blueprint = Blueprint("merchant", __name__)
 
 @merchants_blueprint.route("/users/<id>/merchants/")
 def merchant(id):
+    user = user_repository.select(id)
     merchants = merchant_repository.select_all()
-    print(merchants)
-    return render_template("/users/merchants/index.html", merchants=merchants)
+    merchants_with_percent = Merchant.received_as_percentage(merchants)
+    merchants_by_most_money = Merchant.order_merchants_by_spent(merchants_with_percent)
+    merchant_money_formatted = Merchant.format_money(merchants_by_most_money)
+    return render_template("/users/merchants/index.html", 
+    merchants=merchant_money_formatted, 
+    user=user)
 
 # NEW
 @merchants_blueprint.route("/users/<id>/merchants/new")
 def new_merchant(id):
     user = user_repository.select(id)
     merchants = merchant_repository.select_all()
-    return render_template("/users/merchants/new.html", merchants=merchants, user=user)
+    return render_template("/users/merchants/new.html", merchants=merchants, user=user) 
 
 # CREATE
 @merchants_blueprint.route("/users/<id>/merchants/",methods=["POST"])

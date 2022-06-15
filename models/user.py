@@ -8,3 +8,8 @@ class User:
     def format_money(user):
         user.money = "{:,}".format(user.money)
         return user
+
+    
+    def format_monthly_allowance(user):
+        user.daily_allowance = "{:,}".format(user.daily_allowance)
+        return user
