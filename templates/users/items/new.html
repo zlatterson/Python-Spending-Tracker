@@ -15,16 +15,17 @@
     <a class="nav-link" href="/users/{{user.id}}/Months">Select for Month</a>
 
   </div>
+  <!-- main -->
   <div class="main">
     <div class="form-background">
 
       <form action="/users/{{user.id}}/items" method="post" class="center">
-    
-    
+        <br>
         <div>
           <label for="item name">Item name:</label>
           <input type="text" id="item" name="item" placeholder="Type Here" required>
         </div>
+        <br>
     
           <label for="merchant">Select a Payee:</label>
             <select class="input-box"name="merchant" id="merchant">
@@ -34,7 +35,7 @@
             </select>
             <a href="/users/{{user.id}}/merchants/new">Add payee</a>
             <br>
-    
+            <br>
           
           <label for="tag">Select a Tag:</label>
           <select class="input-box" name="tag" id="merchant">
@@ -44,14 +45,17 @@
           </select>
           <a href="/users/{{user.id}}/tags/new">Add tag</a>
           <br>
-    
+          <br>
           <div>
             <label for="item cost">Cost:</label>
             <input type="number" id="cost" name="cost" placeholder="£" required>
           </div>
+          <br>
     
-    
-        <button type="submit">Buy Item</button>
+        <button class = "pay-button-mini"type="submit">Pay</button> 
+        <br>
+        <a href="/users/{{user.id}}/transactions/new">Make a detailed transaction?</a>
+        <br>
     
       </form>
     </div>

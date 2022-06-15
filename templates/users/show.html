@@ -18,7 +18,9 @@
         {% endfor %}
         </div>
     </div>
+    <!-- main content -->
     <div class="main">
+        <br>
         <div class="top-bar">
             <div id="money-main">£{{user.money}}</div>
             <br>
@@ -28,17 +30,7 @@
                 <div class="same-line">£{{user.daily_allowance}} monthly allowance</div>
             </div>
         </div>
-        <!-- {% for transaction in user_transacts %}
-        <div class="container">
-            <div class="item">
-                {{transaction.merchant.name}}
-                <div class="sub-date">{{transaction.time[8:10]}}/{{transaction.time[5:7]}}/{{transaction.time[0:4]}} {{transaction.time[10:19]}}</div>
-            </div>
-            <div class="item2">
-                -£{{transaction.item.cost}}
-            </div>
-        </div>
-        {% endfor %} -->
+        <br>
         {% for transaction in user_transacts if transaction.today %}
         <div class="dropdown2">
                 <div class="dropbtn2">
@@ -71,7 +63,7 @@
             <div class="dropdown-content2">
                 <div class="sub-date">{{transaction.time[8:10]}}/{{transaction.time[5:7]}}/{{transaction.time[0:4]}} {{transaction.time[10:19]}}</div>
                 {{transaction.item.name.capitalize()}}<br>
-                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:#4285F4;--b:100px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases {{transaction.today}}
+                <div class="pie no-round" style="--p:{{transaction.item.tag.times_used}};--c:#4285F4;--b:100px"></div> {{transaction.item.tag.name.capitalize()}} makes up {{transaction.item.tag.times_used}}% of your purchases
             </div>
         </div>
         {% endfor %}

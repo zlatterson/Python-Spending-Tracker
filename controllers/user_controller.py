@@ -71,7 +71,8 @@ def show_users(id):
 
 @users_blueprint.route("/users/<id>/<year>/<month>")
 def show_users_month(id,year,month):
-    user = user_repository.select(id)
+    found_user = user_repository.select(id)
+    user = User.format_money(found_user)
     transacitons = transaction_repository.select_all()
     print(transacitons)
     user_transacts = Transaction.sort_by_user(transacitons,user.id)
@@ -93,12 +94,19 @@ def show_users_month(id,year,month):
 
     update_transactions = Transaction.change_transaction_object_tag_into_percentage(month_sorted,tag_total)
 
+    current_date = str(datetime.date(datetime.now()))
+    transactions_with_today_bool = Transaction.check_if_date_condition(update_transactions,current_date)
+    tranasctions_with_money_formatted = Transaction.format_money(transactions_with_today_bool)
+
+    transaction_dates = Transaction.transaction_dates(update_transactions)
+
     return render_template("/users/show.html", 
     user=user, 
-    user_transacts=update_transactions,
+    user_transacts=tranasctions_with_money_formatted,
     green_if_monthly=green_if_monthly,
     red_if_monthly=red_if_monthly,
-    month_fmt=month_fmt)
+    month_fmt=month_fmt,
+    transaction_dates=transaction_dates)
  
 
 # NEW

@@ -1,53 +1,72 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<h1>New Payment</h1>
 
-{{user.id}} {{user.name}}
+<div class="parent">
+  <div class="sidebar">
+    <p id="user-link"><a href="/users/{{user.id}}/edit">{{user.name}}</a></p>
 
-<label value={{user.id}} name=userid>{{user.id}}</label>
+    <form action="/users/{{user.id}}/transactions/new">
+        <input type="submit" class="pay-button"value="Make a new Payment" />
+    </form>
+    <a class="nav-link" href="/users/{{user.id}}">Account {{month_fmt}}</a>
+    <a class="nav-link" href="/users/{{user.id}}/Months">Select for Month</a>
 
-<form action="/users/{{user.id}}/transactions" method="post">
-
-
-  <div>
-    <label for="item name">Item name:</label>
-    <input type="text" id="item" name="item" placeholder="Item name" required>
   </div>
+  <!-- main -->
+  <div class="main">
+    <div class="form-background">
 
-
-    <label for="merchant">Select a Payee:</label>
-      <select name="merchant" id="merchant">
-        {% for merchant in merchants %}
-        <option value="{{ merchant.id }}">{{ merchant.name }}</option>
-        {% endfor %}
-      </select>
-      <a href="/users/{{user.id}}/merchants/new">Add payee</a>
-      <br>
-
+      <form action="/users/{{user.id}}/transactions" method="post" class="center">
+        <br>
+        <div>
+          <label for="item name">Item name:</label>
+          <input type="text" id="item" name="item" placeholder="Type Here" required>
+        </div>
+        <br>
     
-    <label for="tag">Select a Tag:</label>
-    <select name="tag" id="merchant">
-      {% for tag in tags %}
-      <option value="{{ tag.id }}">{{ tag.name }}</option>
-      {% endfor %}
-    </select>
-    <a href="/users/{{user.id}}/tags/new">Add tag</a>
-    <br>
+          <label for="merchant">Select a Payee:</label>
+            <select class="input-box"name="merchant" id="merchant">
+              {% for merchant in merchants %}
+              <option value="{{ merchant.id }}">{{ merchant.name }}</option>
+              {% endfor %}
+            </select>
+            <a href="/users/{{user.id}}/merchants/new">Add payee</a>
+            <br>
+            <br>
+          
+          <label for="tag">Select a Tag:</label>
+          <select class="input-box" name="tag" id="merchant">
+            {% for tag in tags %}
+            <option value="{{ tag.id }}">{{ tag.name }}</option>
+            {% endfor %}
+          </select>
+          <a href="/users/{{user.id}}/tags/new">Add tag</a>
+          <br>
+          <br>
+          <div>
+            <label for="item cost">Cost:</label>
+            <input type="number" id="cost" name="cost" placeholder="£" required>
+          </div>
+          <br>
+          <div>
+            <label for="time">Date and Time:</label>
+            <input type="text" id="time" name="time" placeholder="YYYY-MM-DD H:M:S" required>
+          </div>
+          
+          
+    
+        <button class = "pay-button-mini"type="submit">Pay</button> 
 
-    <div>
-      <label for="item cost">Cost:</label>
-      <input type="number" id="cost" name="cost" placeholder="£" required>
+      </form>
     </div>
-
-    <div>
-      <label for="time">Date and Time:</label>
-      <input type="text" id="time" name="time" placeholder="YYYY-MM-DD H:M:S" required>
-    </div>
+      
+  </div>
+</div>
 
 
-  <button type="submit">Buy Item</button>
 
-</form>
+
+
 
 {% endblock %}
