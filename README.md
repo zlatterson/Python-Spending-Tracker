@@ -15,3 +15,10 @@ A calandar can be seen automatically added to the sidebar. Clicking on these cal
 Finally, we can see the user's highest payee:
 
 ![Updated dashboard after purchase](https://i.imgur.com/KINO7gO.png)
+
+
+Possible features:
+
+Smarter advice for user: User can see spending habits over time with a graph.
+Addtional coloured display: Red and green calandars.
+Ability so send money to other users on the database
