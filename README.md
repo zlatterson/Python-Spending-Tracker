@@ -1,6 +1,6 @@
 # spending_tracker
 
-In this project I am to track a user's spending habits with a pythonic web app.
+A projec to track a User's spending through with a pythonic web app.
 
 Users are requested to enter a name, a balance and a goal monthly spending. Upon entering these are displayed on the dashboard. Where a user can then make a purchase
 
